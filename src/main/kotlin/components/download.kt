@@ -9,7 +9,6 @@ import java.awt.Image
 import java.awt.image.BufferedImage
 import java.io.File
 import java.io.OutputStream
-import javax.imageio.IIOException
 import javax.imageio.ImageIO
 import kotlin.math.pow
 
@@ -55,10 +54,6 @@ class Downloader(_c: Config) {
         fillImgUrls()
         downloadImgs()
         processImgs()
-
-        consoleWarn("Download complete")
-        consoleWarn("number of saved images may vary with printed total;")
-        consoleWarn("cause images with CMYK color are deleted.")
     }
 
     /**
@@ -185,13 +180,7 @@ class Downloader(_c: Config) {
             val imgFile = File(path)
             val img: BufferedImage
 
-            /* JPEG CMYK issue */
-            try {
-                img = ImageIO.read(imgFile)
-            } catch (e: IIOException) {
-                consoleWarn("invalid jpg type detected.")
-                imgFile.delete(); continue
-            }
+            img = ImageIO.read(imgFile)
             val scaledImg = img.getScaledInstance(
                 c.size, c.size, Image.SCALE_SMOOTH
             )

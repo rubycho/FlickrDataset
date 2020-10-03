@@ -16,6 +16,8 @@ dependencies {
     implementation("org.ini4j:ini4j:0.5.4")
     implementation("org.json:json:20200518")
     implementation("org.apache.httpcomponents:httpclient:4.5.12")
+    implementation("com.twelvemonkeys.imageio:imageio-jpeg:3.6")
+    implementation("com.twelvemonkeys.imageio:imageio-tiff:3.6")
     testImplementation(kotlin("test-junit"))
 }
 tasks.withType<KotlinCompile>() {
